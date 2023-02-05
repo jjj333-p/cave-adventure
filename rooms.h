@@ -28,14 +28,18 @@ public:
     rooms();
 
     bool add_item(const worlditems& item);
-    worlditems remove_item(const int& position);
+    worlditems remove_item(int position);
+
+    //returns index that it found that item, returns -1 if not found
+    int has(const std::string& id);
+
     int get_movability(){ return movability; }
     std::string get_name() { return name; }
     std::string get_desc() { return description; }
     worlditems* list_items() { return items; } //no time to make this a safer function
 
 
-    rooms& operator[](const int& index) {
+    rooms& operator[](int index) {
         return this[index];
     }
 

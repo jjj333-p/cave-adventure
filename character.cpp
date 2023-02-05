@@ -16,7 +16,7 @@ character::character(rooms (&m)[5][5], const std::string &n) : name(n) {
 }
 
 //returns 0 if failed to move, 1 if couldnt move because inside, 2 if moved
-int character::move(const int &right, const int &up) {
+int character::move(int right, int up) {
 
     //can only move one unit in each direction at a time
     if(right > 1 || right < -1 || up > 1 || up < -1){
@@ -79,7 +79,7 @@ bool character::add_item(const worlditems& item) {
 
 }
 
-worlditems character::remove_item(const int& position) {
+worlditems character::remove_item( int position) {
 
     //grab item to return after
     worlditems item = inventory[position];
@@ -89,5 +89,22 @@ worlditems character::remove_item(const int& position) {
 
     //return the item that was found at that position
     return item;
+
+}
+
+int character::has(const std::string &id) {
+
+    //look for item with a matching id
+    for (int i = 0; i < 6; i++) {
+        if (inventory[i].getID() == id) {
+
+            //if found return that index and stop code
+            return i;
+
+        }
+    }
+
+    //if it couldnt find any, return an out of bounds value.
+    return -1;
 
 }

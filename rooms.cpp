@@ -72,7 +72,7 @@ bool rooms::add_item(const worlditems& item) {
 
 }
 
-worlditems rooms::remove_item(const int& position) {
+worlditems rooms::remove_item(int position) {
 
     //grab item to return after
     worlditems item = items[position];
@@ -82,5 +82,22 @@ worlditems rooms::remove_item(const int& position) {
 
     //return the item that was found at that position
     return item;
+
+}
+
+int rooms::has(const std::string &id) {
+
+    //look for item with a matching id
+    for (int i = 0; i < 6; i++) {
+        if (items[i].getID() == id) {
+
+            //if found return that index and stop code
+            return i;
+
+        }
+    }
+
+    //if it couldnt find any, return an out of bounds value.
+    return -1;
 
 }

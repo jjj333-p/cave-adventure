@@ -22,15 +22,19 @@ public:
     character(rooms (&m)[5][5], const std::string& n);
 
     //returns 0 if failed to move, 1 if couldnt move because inside, 2 if moved
-    int move(const int& right, const int& up);
+    int move(int right, int up);
 
     bool add_item(const worlditems& item);
-    worlditems remove_item(const int& position);
+    worlditems remove_item(int position);
+
+    //returns index that it found that item, returns -1 if not found
+    int has(const std::string& id);
 
     int get_x () { return x; }
     int get_y () { return y; }
-    worlditems* list_items() { return inventory; } //no time to make this a safer function
 
+    //no time to make this a safer function
+    worlditems* list_items() { return inventory; }
 };
 
 

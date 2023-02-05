@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include <sstream>
 #include "worlditems.h"
 #include "rooms.h"
 #include "character.h"
@@ -119,60 +120,147 @@ int main(){
 
         } else if (command.substr(0, 4) == "move") {
 
-            int move_result;
+            int move_result, up, right;
 
             if (command.substr(5, 1) == "n") {
 
-                if (command.substr(6, 1) == "e"){
+                if (command.substr(6, 1) == "e") {
 
-                    move_result = user.move(1,1);
+                    right = 1;
+                    up = 1;
 
-                } else if (command.substr(6,1) == "w"){
+                    move_result = user.move(right, up);
 
-                    move_result = user.move(-1, 1);
+                } else if (command.substr(6, 1) == "w") {
+
+                    right = -1;
+                    up = 1;
+
+                    move_result = user.move(right, up);
 
                 } else {
 
-                    move_result = user.move(0, 1);
+                    right = 0;
+                    up = 1;
+
+                    move_result = user.move(right, up);
 
                 }
 
             }
-
             if (command.substr(5, 2) == "s") {
 
-                if (command.substr(7, 1) == "e"){
+                if (command.substr(6, 1) == "e") {
 
-                    move_result = user.move(1, -1);
+                    right = 1;
+                    up = -1;
 
-                } else if (command.substr(7,1) == "w"){
+                    move_result = user.move(right, up);
 
-                    move_result = user.move(-1, -1);
+                } else if (command.substr(6, 1) == "w") {
+
+                    right = -1;
+                    up = -1;
+
+                    move_result = user.move(right, up);
 
                 } else {
 
-                    move_result = user.move(0, -1);
+                    right = 0;
+                    up = -1;
+
+                    move_result = user.move(right, up);
 
                 }
+
+            } else if (command.substr(5, 2) == "w") {
+
+                right = -1;
+                up = 0;
+
+                move_result = user.move(right, up);
+
+            } else if (command.substr(5, 2) == "e") {
+
+                right = 1;
+                up = 0;
+
+                move_result = user.move(right, up);
 
             }
 
             //Handle the result of the move_result here
-            if (move_result == 0) {
-                std::cout << "You cannot move there.\n";
-            } else if (move_result == 1) {
-                std::cout << "you have entered.\n";
-            } else if (move_result == 2) {
-                std::cout << "successfully moved.\n";
+            switch (move_result) {
+                case 0:
+                    std::cout << "You cannot move there.\n";
+                    break;
+                case 1:
+                    std::cout << "you have entered.\n";
+                    break;
+                case 2:
+                    std::cout << "successfully moved.\n";
+                    break;
+                default:
+                    std::cout << "Ï dont know what happened, but it was clearly disastrous. Result code "
+                              << move_result << ".\n";
+                    break;
+            }
+
+
+
+        } else if (command.substr(0, 3) == "use") {
+
+            std::istringstream iss(command);
+            std::string first, second;
+            iss >> second >> first >> second;
+            // first and second now contain the next two words after the "use" command
+
+            //check if first item is specified
+            if (first.empty()) {
+
+                std::cout << "And what exactly are you planning to use??";
+
+            } else  if (first == "empty") {
+
+                std::cout << "What do you plan to do with a whole lot of nothingness?";
+
+            } else {
+
+                int inv_pos = user.has(first);
+
+                //error return
+                if (inv_pos < 0) {
+
+                    std::cout << "You dont have " << first << "!\n";
+
+                //check if second item is specified
+                } else if (second.empty()) {
+
+                    std::cout << "What are you going to use " << first << " on?";
+
+                } else if (second == "empty") {
+
+                    std::cout << "What is " << first << " supposed to do to nothing?";
+
+                } else {
+
+                    int room_item_pos = currentRoom.has(second);
+
+                    //error return
+                    if (room_item_pos < 0) {
+
+                        std::cout << "There is no " << second << " to use " << first << " on.";
+
+                    }
+
+                }
+
             }
 
         }
 
-//        else if (command.substr(0, 3) == "use") {
-//
-//            if (command.substr(4))
-//
-//        }
+        //make nicer
+        std::cout << "\n";
 
     }
 
