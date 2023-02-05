@@ -36,10 +36,10 @@ rooms::rooms(
 rooms::rooms() {
 
     //define all the items in the room
-    items[0] =  worlditems((std::string &) "empty");
-    items[1] =  worlditems((std::string &) "empty");
-    items[2] =  worlditems((std::string &) "empty");
-    items[3] =  worlditems((std::string &) "empty");
+    items[0] =  worlditems("empty");
+    items[1] =  worlditems("empty");
+    items[2] =  worlditems("empty");
+    items[3] =  worlditems("empty");
 
     //(0,1,2) where 0 is a full block, 1 it can be entered, 2 it can be moved through, no restrictions
     movability = 2;

@@ -25,7 +25,7 @@ public:
     worlditems() = default;
 
     //constructor
-    explicit worlditems(std::string& id) { identifier = id; }
+    explicit worlditems(std::string id) { identifier = id; }
 
 };
 
