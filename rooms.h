@@ -5,6 +5,7 @@
 #ifndef PROJECT1_ROOMS_H
 #define PROJECT1_ROOMS_H
 
+#include <array>
 #include "worlditems.h"
 
 class rooms {
@@ -38,6 +39,44 @@ public:
     std::string get_desc() { return description; }
     worlditems* list_items() { return items; } //no time to make this a safer function
 
+};
+
+std::array<std::array<rooms, 5>, 5> map = {
+        std::array<rooms, 5> {
+                rooms("empty", "An empty space. Use your imagination!", 2, "fish", "empty", "empty", "empty"),
+                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty")
+        },
+        std::array<rooms, 5> {
+                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty")
+        },
+        std::array<rooms, 5> {
+                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty")
+        },
+        std::array<rooms, 5> {
+                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty")
+        },
+        std::array<rooms, 5> {
+                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty")
+        }
 };
 
 #endif //PROJECT1_ROOMS_H
