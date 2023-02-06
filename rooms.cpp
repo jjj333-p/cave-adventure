@@ -78,7 +78,7 @@ worlditems rooms::remove_item(int position) {
     worlditems item = items[position];
 
     //set to empty item
-    items[position] = worlditems((std::string &) "empty");
+    items[position] = worlditems("empty");
 
     //return the item that was found at that position
     return item;
@@ -88,7 +88,7 @@ worlditems rooms::remove_item(int position) {
 int rooms::has(const std::string &id) {
 
     //look for item with a matching id
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < 4; i++) {
         if (items[i].getID() == id) {
 
             //if found return that index and stop code

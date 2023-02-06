@@ -6,50 +6,50 @@
 #include <string>
 #include <algorithm>
 #include <sstream>
+#include <array>
 #include "worlditems.h"
 #include "rooms.h"
 #include "character.h"
 
-//for some reason its easier to do this without error if i use dynamic memory
-rooms map[5][5] = {
-        {
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty")
-        },
-        {
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty")
-        },
-        {
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty")
-        },
-        {
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty")
-        },
-        {
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty")
-        }
-};
-
 int main(){
+
+    std::array<std::array<rooms, 5>, 5> map = {
+            std::array<rooms, 5> {
+                    rooms("empty", "An empty space. Use your imagination!", 2, "fish", "empty", "empty", "empty"),
+                    rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                    rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                    rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                    rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty")
+            },
+            std::array<rooms, 5> {
+                    rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                    rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                    rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                    rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                    rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty")
+            },
+            std::array<rooms, 5> {
+                    rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                    rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                    rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                    rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                    rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty")
+            },
+            std::array<rooms, 5> {
+                    rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                    rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                    rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                    rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                    rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty")
+            },
+            std::array<rooms, 5> {
+                    rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                    rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                    rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                    rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                    rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty")
+            }
+    };
 
     //create character object
     character user = character(map, "name");
@@ -285,15 +285,17 @@ int main(){
 
             } else {
 
-                int pos = currentRoom->has(first);
+                int pos;
+                pos = currentRoom->has(first);
 
                 if (pos < 0) {
 
-                    std::cout << "the room doesnt have that item.";
+                    std::cout << "the room doesnt have " << first << ".\n";
 
                 } else {
 
-                    user.add_item(currentRoom->remove_item(pos));
+                    worlditems removed_item = currentRoom->remove_item(pos);
+                    std::cout << user.add_item(removed_item);
 
                 }
 

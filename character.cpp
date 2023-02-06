@@ -3,15 +3,22 @@
 //
 
 #include <iostream>
+#include <array>
 #include "character.h"
 
-character::character(rooms (&m)[5][5], const std::string &n) : name(n) {
+character::character(std::array<std::array<rooms, 5>, 5> &m, const std::string &n) : name(n) {
 //    std::copy(&m[0][0], &m[0][0] + 5 * 5, &map[0][0]);
-    for (int i = 0; i < 5; i++) {
-        for (int j = 0; j < 5; j++) {
-            this->map[i][j] = map[i][j];
-        }
-    }
+//    for (int i = 0; i < 5; i++) {
+//        for (int j = 0; j < 5; j++) {
+//
+//            rooms ii = m[i][j];
+//            map[i][j] = ii;
+//
+//        }
+//    }
+
+    map = m;
+
     name = n;
 }
 
@@ -55,21 +62,17 @@ int character::move(int right, int up) {
 
 }
 
-bool character::add_item(const worlditems& item) {
+bool character::add_item(worlditems & item) {
 
     //look through the room items until find one that is empty
-    for (auto & i : inventory) {
+    for (int i = 0; i < 5; i++) {
+//        worlditems* ii = &inventory[i];
+//        std::cout << ii->getID() << "\n";
 
-        if(i.getID() == "empty"){
-
-            //set found item slot to the item given
-            i = item;
-
-            //return true that a slot was found and the item was put there
+        if(inventory[i].getID() == "empty"){
+            inventory[i] = item;
             return true;
-
         }
-
     }
 
     //if the code couldnt find somewhere to put that item, return false
