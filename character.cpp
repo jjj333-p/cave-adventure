@@ -19,7 +19,7 @@ int character::move(int right, int up) {
     }
 
     //if inside a room that can only be exited the way you went in
-    if(map[x][y].get_movability() == 1){
+    if((*map)[x][y].get_movability() == 1){
 
         //if going back out the same way, you can exit
         //if not going back out the right way return that it cant move because inside
@@ -28,7 +28,7 @@ int character::move(int right, int up) {
     }
 
     //if cannot move into the room, return out that it failed to move
-    if(map[x+right][y+up].get_movability() == 0) {
+    if((*map)[x+right][y+up].get_movability() == 0) {
 
         return 0; }
 
