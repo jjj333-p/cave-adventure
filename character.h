@@ -16,7 +16,6 @@ private:
     worlditems inventory[6];
     rooms map[5][5];
     std::string name;
-    bool inside;
 
 public:
     character(rooms (&m)[5][5], const std::string& n);

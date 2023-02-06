@@ -36,8 +36,6 @@ int character::move(int right, int up) {
 
     }
 
-    std::cout << map[x+right][y+up].get_name();
-
     //if cannot move into the room, return out that it failed to move
     if(map[x+right][y+up].get_movability() == 0) {
 

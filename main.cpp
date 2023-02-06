@@ -58,17 +58,17 @@ int main(){
     while(true) {
 
         //grab a pointer to the current room to save computational power
-        rooms currentRoom = map[user.get_x()][user.get_y()];
+        rooms* currentRoom = &map[user.get_x()][user.get_y()];
 
         //output info
-        std::cout << "you are in " << currentRoom.get_name() << ". " << currentRoom.get_desc()
+        std::cout << "you are in " << currentRoom->get_name() << " (" << user.get_x() << ", " << user.get_y() << "). " << currentRoom->get_desc()
                   << " In this room there is:";
 
         //count how many items were listed
         int roomitemscount = 0;
 
         //grab list of items in room
-        worlditems *roomitems = currentRoom.list_items();
+        worlditems *roomitems = currentRoom->list_items();
 
         //iterate through said list
         for (int i = 0; i < 4; i++) {
@@ -189,24 +189,34 @@ int main(){
 
             }
 
-            //Handle the result of the move_result here
-            switch (move_result) {
-                case 0:
-                    std::cout << "You cannot move there.\n";
-                    break;
-                case 1:
-                    std::cout << "you have entered.\n";
-                    break;
-                case 2:
-                    std::cout << "successfully moved.\n";
-                    break;
-                default:
-                    std::cout << "Ï dont know what happened, but it was clearly disastrous. Result code "
-                              << move_result << ".\n";
-                    break;
+            if(user.get_x()+right < 0 || user.get_x()+right > 4 || user.get_y()+up < 0 || user.get_y()+up > 4){
+
+                std::cout << "That is out of bounds!\n";
+
+            } else {
+
+                //what room did it attempt to jump to for error checking
+                rooms *attemptedroom = &map[user.get_x() + right][user.get_y() + up];
+
+                //Handle the result of the move_result here
+                switch (move_result) {
+                    case 0:
+                        std::cout << "You cannot move there. There is a " << attemptedroom->get_name() << " there. "
+                                  << attemptedroom->get_desc() << "\n";
+                        break;
+                    case 1:
+                        std::cout << "you have entered.\n";
+                        break;
+                    case 2:
+                        std::cout << "successfully moved.\n";
+                        break;
+                    default:
+                        std::cout << "Ï dont know what happened, but it was clearly disastrous. Result code "
+                                  << move_result << ".\n";
+                        break;
+                }
+
             }
-
-
 
         } else if (command.substr(0, 3) == "use") {
 
@@ -244,7 +254,7 @@ int main(){
 
                 } else {
 
-                    int room_item_pos = currentRoom.has(second);
+                    int room_item_pos = currentRoom->has(second);
 
                     //error return
                     if (room_item_pos < 0) {
