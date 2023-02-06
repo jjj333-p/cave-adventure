@@ -38,11 +38,6 @@ public:
     std::string get_desc() { return description; }
     worlditems* list_items() { return items; } //no time to make this a safer function
 
-
-    rooms& operator[](int index) {
-        return this[index];
-    }
-
 };
 
 #endif //PROJECT1_ROOMS_H
