@@ -70,7 +70,7 @@ worlditems character::remove_item( int position) {
     worlditems item = inventory[position];
 
     //set to empty item
-    inventory[position] = worlditems((std::string &) "empty");
+    inventory[position] = worlditems("empty");
 
     //return the item that was found at that position
     return item;
