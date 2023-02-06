@@ -267,6 +267,38 @@ int main(){
 
             }
 
+        } else if  (command.substr(0, 3) == "get") {
+
+            std::istringstream iss(command);
+            std::string first, second;
+            iss >> second >> first ;
+            //first will now have the first word after "get"
+
+            //check if first item is specified
+            if (first.empty()) {
+
+                std::cout << "And what exactly are you planning to get??";
+
+            } else  if (first == "empty") {
+
+                std::cout << "What do you plan to do with a whole lot of nothingness?";
+
+            } else {
+
+                int pos = currentRoom->has(first);
+
+                if (pos < 0) {
+
+                    std::cout << "the room doesnt have that item.";
+
+                } else {
+
+                    user.add_item(currentRoom->remove_item(pos));
+
+                }
+
+            }
+
         }
 
         //make nicer

@@ -34,6 +34,7 @@ public:
 
     //no time to make this a safer function
     worlditems* list_items() { return inventory; }
+
 };
 
 
