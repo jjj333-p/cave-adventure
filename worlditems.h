@@ -22,7 +22,7 @@ public:
     void deactivate() { activated = false; }
 
     //default constructor
-    worlditems() = default;
+    worlditems() { identifier = "empty"; };
 
     //constructor
     explicit worlditems(std::string id) { identifier = id; }

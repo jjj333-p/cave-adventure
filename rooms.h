@@ -41,42 +41,6 @@ public:
 
 };
 
-std::array<std::array<rooms, 5>, 5> map = {
-        std::array<rooms, 5> {
-                rooms("empty", "An empty space. Use your imagination!", 2, "fish", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty")
-        },
-        std::array<rooms, 5> {
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty")
-        },
-        std::array<rooms, 5> {
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty")
-        },
-        std::array<rooms, 5> {
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty")
-        },
-        std::array<rooms, 5> {
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty")
-        }
-};
+extern std::array<std::array<rooms, 5>, 5> map;
 
 #endif //PROJECT1_ROOMS_H
