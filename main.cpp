@@ -208,7 +208,7 @@ int main(){
                     std::cout << "You dont have " << first << "!\n";
 
                 //check if second item is specified
-                } else if (second.empty()) {
+                } else if (second == "use") {
 
                     std::cout << "What are you going to use " << first << " on?";
 
@@ -259,13 +259,60 @@ int main(){
                 } else {
 
                     worlditems removed_item = currentRoom->remove_item(pos);
-                    std::cout << user.add_item(removed_item);
+
+                    if(!user.add_item(removed_item)) {
+
+                        std::cout << "You are out of inventory spots\n";
+
+                        currentRoom->add_item(removed_item);
+
+                    }
+
+                }
+
+            }
+
+        } else if (command.substr(0, 4) == "drop") {
+
+        std::istringstream iss(command);
+        std::string first, second;
+        iss >> second >> first;
+        //first will now have the first word after "drop"
+
+        //check if first item is specified
+        if (first.empty()) {
+
+            std::cout << "What exactly are you planning to drop?";
+
+        } else if (first == "empty") {
+
+            std::cout << "You can't drop nothingness.";
+
+        } else {
+
+            int pos;
+            pos = user.has(first);
+
+            if (pos < 0) {
+
+                std::cout << "You don't have " << first << " to drop.\n";
+
+            } else {
+
+                worlditems dropped_item = user.remove_item(pos);
+
+                if (!currentRoom->add_item(dropped_item)) {
+
+                    std::cout << "The room is out of space for " << first << ".\n";
+
+                    user.add_item(dropped_item);
 
                 }
 
             }
 
         }
+    }
 
         //make nicer
         std::cout << "\n";
