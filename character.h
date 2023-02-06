@@ -14,11 +14,11 @@ class character {
 private:
     int x = 0 ,y = 0, prev_x = 0, prev_y = 0, score = 0;
     worlditems inventory[6];
-    std::array<std::array<rooms, 5>, 5> map;
+    std::array<std::array<rooms, 5>, 5>* map;
     std::string name;
 
 public:
-    character(std::array<std::array<rooms, 5>, 5> &m, const std::string& n) : name(n) , map(m){}
+    character(std::array<std::array<rooms, 5>, 5> &m, const std::string& n) : name(n) , map(&m){}
 
     //returns 0 if failed to move, 1 if couldnt move because inside, 2 if moved
     int move(int right, int up);
