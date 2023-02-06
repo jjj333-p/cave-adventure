@@ -18,7 +18,7 @@ private:
     std::string name;
 
 public:
-    character(std::array<std::array<rooms, 5>, 5> &m, const std::string& n);
+    character(std::array<std::array<rooms, 5>, 5> &m, const std::string& n) : name(n) , map(map){}
 
     //returns 0 if failed to move, 1 if couldnt move because inside, 2 if moved
     int move(int right, int up);

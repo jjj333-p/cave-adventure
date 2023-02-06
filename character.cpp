@@ -6,22 +6,6 @@
 #include <array>
 #include "character.h"
 
-character::character(std::array<std::array<rooms, 5>, 5> &m, const std::string &n) : name(n) {
-//    std::copy(&m[0][0], &m[0][0] + 5 * 5, &map[0][0]);
-//    for (int i = 0; i < 5; i++) {
-//        for (int j = 0; j < 5; j++) {
-//
-//            rooms ii = m[i][j];
-//            map[i][j] = ii;
-//
-//        }
-//    }
-
-    map = m;
-
-    name = n;
-}
-
 //returns 0 if failed to move, 1 if couldnt move because inside, 2 if moved
 int character::move(int right, int up) {
 
