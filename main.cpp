@@ -11,7 +11,7 @@
 #include "rooms.h"
 #include "character.h"
 
-//see rooms.h for map array
+//see rooms.cpp for map array
 
 int main(){
 
@@ -158,6 +158,8 @@ int main(){
                 std::cout << "That is out of bounds!\n";
 
             } else {
+
+                std::cout << "a";
 
                 //what room did it attempt to jump to for error checking
                 rooms *attemptedroom = &map[user.get_x() + right][user.get_y() + up];
