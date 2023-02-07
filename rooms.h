@@ -34,10 +34,11 @@ public:
     //returns index that it found that item, returns -1 if not found
     int has(const std::string& id);
 
-    int get_movability(){ return movability; }
+    int get_movability() const{ return movability; }
     std::string get_name() { return name; }
     std::string get_desc() { return description; }
     worlditems* list_items() { return items; } //no time to make this a safer function
+    worlditems* use_item(int i) { return &(items[i]); } //at this point idk any better way
 
 };
 

@@ -3,7 +3,6 @@
 //
 
 #include <iostream>
-#include <array>
 #include "character.h"
 
 //returns 0 if failed to move, 1 if couldnt move because inside, 2 if moved

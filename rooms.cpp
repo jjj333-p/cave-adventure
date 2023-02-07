@@ -103,39 +103,41 @@ int rooms::has(const std::string &id) {
 }
 
 std::array<std::array<rooms, 5>, 5> map = {
-        std::array<rooms, 5> {
+        std::array<rooms, 5>{
                 rooms("start", "An empty space. This is your starting spot.", 2, "flashdrive", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("desk", "A place to put things.", 0, "empty", "empty", "empty", "empty"),
-                rooms("desk", "A place to put things.", 2, "laptop", "empty", "empty", "empty"),
-                rooms("desk", "A place to put things.", 0, "empty", "empty", "empty", "empty")
-        },
-        std::array<rooms, 5> {
                 rooms("bookshelf", "There is a vast wall of books here.", 0, "empty", "empty", "empty", "empty"),
                 rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                rooms("bookshelf", "There is a cute display made out of books here", 0, "empty", "empty", "empty","empty"),
+                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty")
+        },
+                std::array<rooms, 5> {
+                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
                 rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
                 rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
                 rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty")
         },
         std::array<rooms, 5> {
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                rooms("desk", "A place to put things.", 0, "empty", "empty", "empty", "empty"),
                 rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
                 rooms("bookshelf", "There is a colorful mural of books here.", 0, "empty", "empty", "empty", "empty"),
+                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
+                rooms("bookshelf", "There is a cute display made out of books here", 0, "empty", "empty", "empty", "empty")
+
+        },
+        std::array<rooms, 5> {
+                rooms("desk", "A place to put things.", 2, "laptop", "empty", "empty", "empty"),
+                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
                 rooms("bookshelf", "There is a colorful mural of books here.", 0, "empty", "empty", "empty", "empty"),
-                rooms("bookshelf", "There is a colorful mural of books here.", 0, "empty", "empty", "empty", "empty")
-        },
-        std::array<rooms, 5> {
-                rooms("bookshelf", "There is a cute display made out of books here", 0, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("desk", "A place to put things.", 2, "empty", "empty", "empty", "empty"),
+                rooms("desk", "A place to put things.", 2, "printer", "empty", "empty", "empty"),
                 rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty")
         },
         std::array<rooms, 5> {
+                rooms("desk", "A place to put things.", 0, "empty", "empty", "empty", "empty"),
                 rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
-                rooms("bookshelf", "There is a cute display made out of books here", 0, "empty", "empty", "empty", "empty"),
+                rooms("bookshelf", "There is a colorful mural of books here.", 0, "empty", "empty", "empty", "empty"),
                 rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty"),
                 rooms("empty", "An empty space. Use your imagination!", 2, "empty", "empty", "empty", "empty")
+
         }
 };

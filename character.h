@@ -28,11 +28,18 @@ public:
     //returns index that it found that item, returns -1 if not found
     int has(const std::string& id);
 
-    int get_x () { return x; }
-    int get_y () { return y; }
+    int get_x () const { return x; }
+    int get_y () const { return y; }
 
     //no time to make this a safer function
     worlditems* list_items() { return inventory; }
+
+    worlditems* use_item(int i) { return &(inventory[i]); } //at this point idk any better way
+
+    int get_score() { return score; }
+
+    void increase_score(int i) { score += i; }
+
 
 };
 

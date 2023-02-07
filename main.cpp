@@ -6,7 +6,6 @@
 #include <string>
 #include <algorithm>
 #include <sstream>
-#include <array>
 #include "worlditems.h"
 #include "rooms.h"
 #include "character.h"
@@ -70,7 +69,14 @@ int main(){
         if (command.substr(0, 4) == "help") {
 
             //idk what to put here yet
-            std::cout << "idk, help yourself. i have nothing for you.";
+            std::cout << "commands:\n"
+                      << " - help - this menu here ofc\n"
+                      << " - inv - displays items in the user inventory\n"
+                      << " - move - move around the map. use move [n/nw/ne/w/e/s/sw/se]\n"
+                      << " - use - use an item to activate another item. usage use [item from inventory] [item from room].\n"
+                      << " - get - get an item from the room and put it in the user inventory. usage get [item in room].\n"
+                      << " - drop - inverse of get. usage drop [item in inventory].\n"
+                      << " - score - shows user score";
 
         } else if (command.substr(0, 3) == "inv") {
 
@@ -106,7 +112,7 @@ int main(){
                 }
 
             }
-            if (command.substr(5, 2) == "s") {
+            if (command.substr(5, 1) == "s") {
 
                 if (command.substr(6, 1) == "e") {
 
@@ -125,12 +131,12 @@ int main(){
 
                 }
 
-            } else if (command.substr(5, 2) == "w") {
+            } else if (command.substr(5, 1) == "w") {
 
                 right = -1;
                 up = 0;
 
-            } else if (command.substr(5, 2) == "e") {
+            } else if (command.substr(5, 1) == "e") {
 
                 right = 1;
                 up = 0;
@@ -161,6 +167,7 @@ int main(){
                         break;
                     case 2:
                         std::cout << "successfully moved.\n";
+                        user.increase_score(1);
                         break;
                     default:
                         std::cout << "Ï dont know what happened, but it was clearly disastrous. Result code "
@@ -213,6 +220,56 @@ int main(){
 
                         std::cout << "There is no " << second << " to use " << first << " on.";
 
+                    } else {
+
+                        //retrieve pointers to the items in question
+                        worlditems* inv_item = user.use_item(inv_pos);
+                        worlditems* room_item = currentRoom->use_item(room_item_pos);
+
+                        //make sure item is activated for use
+                        //flash drive doesnt need to be activated
+                        if((!inv_item->is_activated())){
+
+                            if (first == "flashdrive") {
+
+                                if (second == "laptop") {
+
+                                    room_item->activate();
+
+                                    user.increase_score(10);
+
+
+                                } else {
+
+                                    user.increase_score(5);
+
+
+                                    std::cout << "you cant use a " << first << " on " << second << ".\n";
+
+                                }
+
+                            } else {
+
+                                user.increase_score(5);
+
+                                std::cout << "You need to drop your " << first << " and activate it first.\n";
+
+                            }
+
+                        } else if ((first == "laptop" && second == "printer")) {
+
+                            //using the laptop on the printer is how you win this mini game
+
+                            user.increase_score(20);
+
+
+                            std::cout << "\nYOU HAVE WON THE GAME!!!!\nUser score: " << user.get_score();
+
+                            //terminate game loop and entire program
+                            return 0;
+
+                        }
+
                     }
 
                 }
@@ -254,7 +311,7 @@ int main(){
 
                         currentRoom->add_item(removed_item);
 
-                    }
+                    } else { user.increase_score(5); }
 
                 }
 
@@ -262,45 +319,53 @@ int main(){
 
         } else if (command.substr(0, 4) == "drop") {
 
-        std::istringstream iss(command);
-        std::string first, second;
-        iss >> second >> first;
-        //first will now have the first word after "drop"
+            std::istringstream iss(command);
+            std::string first, second;
+            iss >> second >> first;
+            //first will now have the first word after "drop"
 
-        //check if first item is specified
-        if (first.empty()) {
+            //check if first item is specified
+            if (first.empty()) {
 
-            std::cout << "What exactly are you planning to drop?";
+                std::cout << "What exactly are you planning to drop?";
 
-        } else if (first == "empty") {
+            } else if (first == "empty") {
 
-            std::cout << "You can't drop nothingness.";
-
-        } else {
-
-            int pos;
-            pos = user.has(first);
-
-            if (pos < 0) {
-
-                std::cout << "You don't have " << first << " to drop.\n";
+                std::cout << "You can't drop nothingness.";
 
             } else {
 
-                worlditems dropped_item = user.remove_item(pos);
+                int pos;
+                pos = user.has(first);
 
-                if (!currentRoom->add_item(dropped_item)) {
+                if (pos < 0) {
 
-                    std::cout << "The room is out of space for " << first << ".\n";
+                    std::cout << "You don't have " << first << " to drop.\n";
 
-                    user.add_item(dropped_item);
+                } else {
+
+                    worlditems dropped_item = user.remove_item(pos);
+
+                    if (!currentRoom->add_item(dropped_item)) {
+
+                        std::cout << "The room is out of space for " << first << ".\n";
+
+                        user.add_item(dropped_item);
+
+                    } else { user.increase_score(5); }
 
                 }
 
             }
+        } else if (command.substr(0, 5) == "score") {
+
+            std::cout << "Your current score is " << user.get_score() << ".\n";
+
+        } else {
+
+            std::cout << "Unknown command.\n";
 
         }
-    }
 
         //make nicer
         std::cout << "\n";

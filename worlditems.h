@@ -17,7 +17,7 @@ public:
 
     //written like this because i feel like if i allow direct bool access
     //i will inevitably screw the code all kinds of up
-    bool is_activated() { return activated; }
+    bool is_activated() const { return activated; }
     void activate() { activated = true; }
     void deactivate() { activated = false; }
 
