@@ -93,21 +93,15 @@ int main(){
                     right = 1;
                     up = 1;
 
-                    move_result = user.move(right, up);
-
                 } else if (command.substr(6, 1) == "w") {
 
                     right = -1;
                     up = 1;
 
-                    move_result = user.move(right, up);
-
                 } else {
 
                     right = 0;
                     up = 1;
-
-                    move_result = user.move(right, up);
 
                 }
 
@@ -119,21 +113,15 @@ int main(){
                     right = 1;
                     up = -1;
 
-                    move_result = user.move(right, up);
-
                 } else if (command.substr(6, 1) == "w") {
 
                     right = -1;
                     up = -1;
 
-                    move_result = user.move(right, up);
-
                 } else {
 
                     right = 0;
                     up = -1;
-
-                    move_result = user.move(right, up);
 
                 }
 
@@ -142,14 +130,10 @@ int main(){
                 right = -1;
                 up = 0;
 
-                move_result = user.move(right, up);
-
             } else if (command.substr(5, 2) == "e") {
 
                 right = 1;
                 up = 0;
-
-                move_result = user.move(right, up);
 
             }
 
@@ -163,6 +147,8 @@ int main(){
 
                 //what room did it attempt to jump to for error checking
                 rooms *attemptedroom = &map[user.get_x() + right][user.get_y() + up];
+
+                move_result = user.move(right, up);
 
                 //Handle the result of the move_result here
                 switch (move_result) {
