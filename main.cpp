@@ -234,10 +234,20 @@ int main(){
 
                                 if (second == "laptop") {
 
-                                    room_item->activate();
+                                    //an item should only be able to be activated once
+                                    if(room_item->is_activated()){
 
-                                    user.increase_score(10);
+                                        std::cout << second << " is already activated!";
 
+                                    } else {
+
+                                        room_item->activate();
+
+                                        user.increase_score(10);
+
+                                        std::cout << second << " activated!";
+
+                                    }
 
                                 } else {
 
