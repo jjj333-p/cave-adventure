@@ -36,7 +36,7 @@ public:
 
     worlditems* use_item(int i) { return &(inventory[i]); } //at this point idk any better way
 
-    int get_score() { return score; }
+    int get_score() const { return score; }
 
     void increase_score(int i) { score += i; }
 
