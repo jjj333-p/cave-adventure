@@ -230,43 +230,35 @@ int main(){
                         //flash drive doesnt need to be activated
                         if((!inv_item->is_activated())){
 
-                            if (first == "flashdrive") {
+                            if (first == "flashdrive" && second == "laptop" ||
+                                first == "batteries" && second == "lamp" ||
+                                first == "lamp" && second == "textbook" ||
+                                first == "textbook" && second == "flashdrive" ||
+                                first == "laptop" && second == "printer")
+                            {
 
-                                if (second == "laptop") {
-
-                                    //an item should only be able to be activated once
-                                    if(room_item->is_activated()){
-
-                                        std::cout << second << " is already activated!";
-
-                                    } else {
-
-                                        room_item->activate();
-
-                                        user.increase_score(10);
-
-                                        std::cout << second << " activated!";
-
-                                    }
-
+                                if (room_item->is_activated()) {
+                                    std::cout << second << " is already activated!";
                                 } else {
-
-                                    user.increase_score(5);
-
-
-                                    std::cout << "you cant use a " << first << " on " << second << ".\n";
-
+                                    room_item->activate();
+                                    user.increase_score(10);
+                                    std::cout << second << " activated!";
                                 }
+
+                            } else if (first == "bug"){
+
+                                std::cout << "You have touched a deadly bug and died. " << "Your  score is " << user.get_score() << ".\n";
+
+                                return 0;
 
                             } else {
 
-                                user.increase_score(5);
-
-                                std::cout << "You need to drop your " << first << " and activate it first.\n";
+                                user.increase_score(-5);
+                                std::cout << "Invalid combination of items.\n";
 
                             }
 
-                        } else if ((first == "laptop" && second == "printer")) {
+                        } else if ((first == "printer" && second == "paper")) {
 
                             //using the laptop on the printer is how you win this mini game
 
